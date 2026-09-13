@@ -1,0 +1,15 @@
+var o = { [0] = 1 };
+print(sizeof(o)); # out: 1
+print(o[0]); # out: 1
+print(delete o[0]); # out: true
+print(o[0]); # out: void
+print(delete o[0]); # out: false
+print(sizeof(o)); # out: 0
+
+o.p = 1;
+print(sizeof(o)); # out: 1
+print(o.p); # out: 1
+print(delete o.p); # out: true
+print(o.p); # out: void
+print(delete o.p); # out: false
+print(sizeof(o)); # out: 0

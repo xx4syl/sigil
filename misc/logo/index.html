@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:," />
+    <title>logo</title>
+  </head>
+
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      width: 100dvw;
+      height: 100dvh;
+      background-color: black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+
+  <body></body>
+
+  <script>
+    function create(
+      container = document.body,
+      {
+        size = 400,
+        backgroundColor = "black",
+        color = "white",
+        text = "logo",
+        fontFamily = "cambria",
+        className,
+        id,
+      },
+    ) {
+      const backDiv = document.createElement("div");
+
+      if (className) backDiv.className = className;
+      if (id) backDiv.id = id;
+
+      Object.assign(backDiv.style, {
+        backgroundColor,
+        width: `${size}px`,
+        height: `${size}px`,
+        display: "flex",
+        justifyContent: "end",
+        alignItems: "end",
+      });
+
+      const textDiv = document.createElement("div");
+
+      const textSize = Math.floor(size * 0.8);
+      const fontSize = Math.floor(textSize * 0.8);
+
+      Object.assign(textDiv.style, {
+        color,
+        width: `${textSize}px`,
+        height: `${textSize}px`,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "end",
+        fontFamily,
+        fontSize: `${fontSize}px`,
+      });
+
+      textDiv.textContent = text;
+
+      backDiv.appendChild(textDiv);
+      return container.appendChild(backDiv);
+    }
+
+    function randBool() {
+      return Math.random() - 0.5 > 0;
+    }
+
+    const color = {
+      black: "#2d2a2e",
+
+      red: "#e14775",
+      green: "#269d69",
+      blue: "#1c8ca8",
+    };
+
+    create(undefined, {
+      backgroundColor: color.black,
+      text: "sil",
+      size: 800,
+    });
+  </script>
+</html>

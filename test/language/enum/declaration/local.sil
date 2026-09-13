@@ -1,0 +1,23 @@
+{
+    enum {
+        zero,
+        first,
+        second,
+        second_dup = second,
+        next,
+        next_plus_2 = next + 2,
+        inc = () => zero++,
+        string = "string",
+        after_string,
+    };
+
+    print(zero); # out: 0
+    print(first); # out: 1
+    print(second); # out: 2
+    print(second_dup); # out: 2
+    print(next); # out: 3
+    print(next_plus_2); # out: 5
+    print(inc(), inc(), zero); # out: 0 1 2
+    print(string); # out: string
+    print(after_string); # out: string1
+}

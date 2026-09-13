@@ -1,0 +1,23 @@
+{
+    enum E {
+        zero,
+        first,
+        second,
+        second_dup = E.second,
+        next,
+        next_plus_2 = E.next + 2,
+        inc = this => this ? this.zero++ : E.zero++,
+        string = "string",
+        after_string,
+    };
+
+    print(E.zero); # out: 0
+    print(E.first); # out: 1
+    print(E.second); # out: 2
+    print(E.second_dup); # out: 2
+    print(E.next); # out: 3
+    print(E.next_plus_2); # out: 5
+    print(E.inc(), E->inc(), E.zero); # out: 0 1 2
+    print(E.string); # out: string
+    print(E.after_string); # out: string1
+}

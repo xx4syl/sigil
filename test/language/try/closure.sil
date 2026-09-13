@@ -1,0 +1,13 @@
+var result = void;
+
+try {
+    var _result = true;
+    result = () => _result = !_result;
+    error("boom!");
+} catch {
+    /* nothing */
+}
+
+print(result()); # out: false
+print(result()); # out: true
+print(result()); # out: false

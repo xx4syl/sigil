@@ -1,0 +1,4 @@
+if (true) print("good"); else print("bad"); # out: good
+if (false) print("bad"); else print("good"); # out: good
+
+if (false) void; else { print("block"); } # out: block

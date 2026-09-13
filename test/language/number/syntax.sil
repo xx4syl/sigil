@@ -1,0 +1,15 @@
+print(1); # out: 1
+print(1'2); # out: 12
+print(1'2.3); # out: 12.3
+print(1'2.3'4); # out: 12.34
+print(1'2.3'4e5); # out: 1234000
+print(1'2.3'4e+5); # out: 1234000
+print(1'2.3'4e-5'6); # out: 1.234e-55
+
+print(0xa); # out: 10
+print(0xa'b); # out: 171
+print(0xa'b.c); # out: 171.75
+print(0xa'b.c'd); # out: 171.801
+print(0xa'b.c'dp1); # out: 343.602
+print(0xa'b.c'dp+1); # out: 172.801
+print(0xa'b.c'dp-1'2); # out: 159.801

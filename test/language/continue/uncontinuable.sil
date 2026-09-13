@@ -1,0 +1,1 @@
+label: { continue label; } # err: uncontinuable label

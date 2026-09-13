@@ -1,0 +1,1 @@
+default: # err: 'default' outside of switch

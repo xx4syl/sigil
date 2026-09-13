@@ -1,0 +1,1 @@
+throw () => { try { return 1; } catch {} }(); # err: 1

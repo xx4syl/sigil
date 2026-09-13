@@ -1,0 +1,4 @@
+func fn1() {}
+print(fn1()); # out: void
+func fn2() { return; }
+print(fn2()); # out: void

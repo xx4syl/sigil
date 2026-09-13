@@ -1,0 +1,4 @@
+var s = "3.14";
+print(typeof +s == "num" && +s == 3.14); # out: true
+print(typeof -s == "num" && -s == -3.14); # out: true
+print(typeof ~s == "str" && +~s == 41.3); # out: true

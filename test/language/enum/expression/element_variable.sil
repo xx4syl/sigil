@@ -1,0 +1,4 @@
+var e = enum {
+    zero,
+    second = zero, # err: undefined variable
+};

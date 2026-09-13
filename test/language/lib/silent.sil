@@ -1,0 +1,4 @@
+func fn(v) { if !(v) throw "error"; return "ok"; }
+
+print(silent(fn, 1)); # out: ok
+print(silent(fn, 0)); # out: error

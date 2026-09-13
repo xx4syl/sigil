@@ -1,0 +1,39 @@
+func declaration() {
+    print("declaration");
+}
+
+var named = func named() {
+    print("named");
+};
+
+var unnamed = func () {
+    print("unnamed");
+};
+
+var arrow_arg = arg => print(arg);
+
+var arrow_arg_block = arg => {
+    print(arg);
+};
+
+var arrow_args = (a, b) => print(a + b);
+
+var arrow_args_block = (a, b) => {
+    print(a + b);
+};
+
+var o = {
+    .text = "method",
+    ->method() { print(this.text); },
+    .include() { print("include"); },
+};
+
+declaration();                        # out: declaration
+named();                              # out: named
+unnamed();                            # out: unnamed
+arrow_arg("arrow");                   # out: arrow
+arrow_arg_block("arrow block");       # out: arrow block
+arrow_args("arrow", "s");             # out: arrows
+arrow_args_block("arrow", "s block"); # out: arrows block
+o->method();                          # out: method
+o.include();                          # out: include

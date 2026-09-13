@@ -1,0 +1,10 @@
+var O = {
+    .__fdiv = (this, other, reverse) => {
+        if !(reverse) return this.count / other;
+        else return other / this.count;
+    },
+};
+
+var o = (O){ .count = 4 };
+print(o / 2); # out: 2
+print(2 / o); # out: 0.5

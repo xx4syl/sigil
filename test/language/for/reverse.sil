@@ -1,0 +1,14 @@
+for !(;;) {
+    print("bad");
+    break;
+}
+
+for !(;true;) {
+    print("bad");
+    break;
+}
+
+for !(;false;) {
+    print("good"); # out: good
+    break;
+}

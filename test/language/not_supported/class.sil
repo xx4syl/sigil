@@ -1,0 +1,1 @@
+class Class {}; # err: class is not supported

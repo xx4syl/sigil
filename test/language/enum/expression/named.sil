@@ -1,0 +1,21 @@
+var e = enum _e {
+    zero,
+    first,
+    second,
+    second_dup = _e.second,
+    next,
+    next_plus_2 = _e.next + 2,
+    inc = () => _e.zero++,
+    string = "string",
+    after_string,
+};
+
+print(e.zero); # out: 0
+print(e.first); # out: 1
+print(e.second); # out: 2
+print(e.second_dup); # out: 2
+print(e.next); # out: 3
+print(e.next_plus_2); # out: 5
+print(e.inc(), e.inc(), e.zero); # out: 0 1 2
+print(e.string); # out: string
+print(e.after_string); # out: string1

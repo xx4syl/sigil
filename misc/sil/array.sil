@@ -1,0 +1,83 @@
+var Array = {
+    ->__init(length = 0, fill) {
+        this.__len = length;
+        if (fill != void) {
+            for (var i = 0; i < length; i++) {
+                this[i] = fill;
+            }
+        }
+    },
+
+    ->length() {
+        return this.__len;
+    },
+
+    ->__pos() {
+        return this.__len;
+    },
+
+    ->add(...values) {
+        for (var i = 0, count = values.__len; i < count; i++) {
+            this[this.__len++] = values[i];
+        }
+    },
+
+    ->push(value) {
+        return this[this.__len++] = value;
+    },
+
+    ->pop() {
+        return this[--this.__len];
+    },
+
+    ->__neg() {
+        return this[--this.__len];
+    },
+
+    ->__lsh(value, reverse) {
+        if (reverse) return this[--this.__len];
+        this[this.__len++] = value;
+        return this;
+    },
+
+    ->reverse() {
+        for (
+            var i = 0,
+                j = this.__len - 1,
+                count = this.__len // 2;
+            i < count;
+            i++, j--
+        ) {
+            var temp = this[i];
+            this[i] = this[j];
+            this[j] = temp;
+        }
+        return this;
+    },
+
+    ->__rev() {
+        return this->reverse();
+    },
+
+    ->map(f) {
+        for (var i = 0, count = this.__len; i < count; i++) {
+            this[i] = f(this[i], i, this);
+        }
+        return this;
+    },
+
+    ->each(f) {
+        for (var i = 0, count = this.__len; i < count; i++) {
+            f(this[i], i, this);
+        }
+        return this;
+    },
+
+    ->filter(f) {
+        var result = new Array;
+        for (var i = 0, count = this.__len; i < count; i++) {
+            if (f(this[i], i, this)) result << this[i];
+        }
+        return result;
+    },
+};

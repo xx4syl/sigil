@@ -1,0 +1,49 @@
+var i = 0;
+registrate(() => print(i++));
+execute(); # out: 0
+execute(); # out: 1
+execute(); # out: 2
+
+registrate(() => print("ok"));
+execute(); # out: ok
+
+registrate(() => { throw "boom!"; });
+execute(); # out: execute error: boom!
+
+use("misc/sil/array.sil");
+
+enum event_type {
+    new_message,
+    other,
+};
+
+var Event = {
+    ->__init(type = event_type.other) {
+        this.type = type;
+    },
+};
+
+var Message = (Event){
+    ->__init(text = "") {
+        Event.__init(this, event_type.new_message);
+        this.text = text;
+    },
+};
+
+var messages = new Array;
+
+registrate(ev => {
+    if (ev.type == event_type.new_message) {
+        messages << ev;
+        print("new message! total: %(+messages)");
+    }
+});
+
+execute(new Message("hello,"));
+# out: new message! total: 1
+execute(new Event);
+execute(new Message("world!"));
+# out: new message! total: 2
+messages->each(msg => print(msg.text));
+# out: hello,
+# out: world!

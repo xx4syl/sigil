@@ -1,0 +1,265 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+
+  "name": "sigil",
+  "scopeName": "source.sigil",
+
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#operators"
+    },
+    {
+      "include": "#punctuation"
+    },
+    {
+      "include": "#functions"
+    },
+    {
+      "include": "#variables"
+    }
+  ],
+
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.sigil",
+          "match": "#.*$"
+        },
+        {
+          "name": "comment.block.sigil",
+          "begin": "/\\*",
+          "end": "\\*/"
+        }
+      ]
+    },
+
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.sigil",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "include": "#string_escapes"
+            },
+            {
+              "include": "#string_format"
+            }
+          ]
+        }
+      ]
+    },
+    "string_escapes": {
+      "patterns": [
+        {
+          "name": "constant.character.escape.sigil",
+          "match": "\\\\(?:[0abefnrtv\"\\\\]|x[0-9a-fA-F]{2})|%%"
+        }
+      ]
+    },
+    "string_format": {
+      "patterns": [
+        {
+          "name": "meta.interpolation.expression.sigil",
+          "begin": "%\\(",
+          "end": "\\)",
+          "contentName": "meta.embedded.expression.sigil",
+          "patterns": [
+            {
+              "include": "#balanced_parens"
+            },
+            {
+              "include": "source.sigil"
+            }
+          ]
+        },
+        {
+          "name": "meta.interpolation.variable.sigil",
+          "match": "%[a-zA-Z_][a-zA-Z0-9_]*"
+        }
+      ]
+    },
+    "balanced_parens": {
+      "patterns": [
+        {
+          "name": "punctuation.section.parens.begin.sigil",
+          "begin": "\\(",
+          "end": "\\)",
+          "contentName": "meta.embedded.expression.sigil",
+          "patterns": [
+            {
+              "include": "#balanced_parens"
+            },
+            {
+              "include": "source.sigil"
+            }
+          ]
+        }
+      ]
+    },
+
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.float.sigil",
+          "match": "\\b(?<!')(?:(?:[0-9]+(?:'[0-9]+)*)(?:\\.[0-9]+(?:'[0-9]+)*)?(?:[eE][+-]?[0-9]+(?:'[0-9]+)*)?|0[xX][0-9a-fA-F]+(?:'[0-9a-fA-F]+)*(?:\\.[0-9a-fA-F]+(?:'[0-9a-fA-F]+)*)?(?:[pP][+-]?[0-9a-fA-F]+(?:'[0-9a-fA-F]+)*)?)(?!')\\b"
+        }
+      ]
+    },
+
+    "keywords": {
+      "patterns": [
+        {
+          "name": "variable.language",
+          "match": "\\b(this)\\b"
+        },
+        {
+          "name": "keyword.control.sigil",
+          "match": "\\b(if|else|while|do|for|break|continue|return|throw|switch|case|default|try|catch|finally|goto)\\b"
+        },
+        {
+          "name": "keyword.operator.sigil",
+          "match": "\\b(typeof|not|then|and|or|new|delete|is)\\b"
+        },
+        {
+          "name": "entity.name.type.sigil",
+          "match": "\\b(var|func|enum|const|class)\\b"
+        },
+        {
+          "name": "constant.language.sigil",
+          "match": "\\b(false|true|void)\\b"
+        }
+      ]
+    },
+
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.assignment.compound.sigil",
+          "match": "\\+=|-=|\\*=|/=|%=|\\*\\*=|//=|\\|=|\\^=|&=|<<=|>>="
+        },
+        {
+          "name": "keyword.operator.increment-decrement.sigil",
+          "match": "\\+\\+|--"
+        },
+        {
+          "name": "keyword.operator.arrow.sigil",
+          "match": "=>"
+        },
+        {
+          "name": "keyword.operator.member.sigil",
+          "match": "->"
+        },
+        {
+          "name": "keyword.operator.comparison.sigil",
+          "match": "==|!=|<=|>=|<|>"
+        },
+        {
+          "name": "keyword.operator.logical.sigil",
+          "match": "\\|\\||&&"
+        },
+        {
+          "name": "keyword.operator.bitwise.sigil",
+          "match": "\\||\\^|&|~"
+        },
+        {
+          "name": "keyword.operator.shift.sigil",
+          "match": "<<|>>"
+        },
+        {
+          "name": "keyword.operator.arithmetic.sigil",
+          "match": "\\+|-|\\*|/|%|\\*\\*|//"
+        },
+        {
+          "name": "keyword.operator.assignment.sigil",
+          "match": "="
+        },
+        {
+          "name": "keyword.operator.spread.sigil",
+          "match": "\\.\\.\\."
+        },
+        {
+          "name": "keyword.operator.logical.not.sigil",
+          "match": "!"
+        },
+        {
+          "name": "keyword.operator.ternary.sigil",
+          "match": "\\?|:"
+        }
+      ]
+    },
+
+    "punctuation": {
+      "patterns": [
+        {
+          "name": "punctuation.terminator.sigil",
+          "match": ";"
+        },
+        {
+          "name": "punctuation.comma.sigil",
+          "match": ","
+        },
+        {
+          "name": "punctuation.dot.sigil",
+          "match": "\\."
+        },
+        {
+          "name": "punctuation.parenthesis.begin.sigil",
+          "match": "\\("
+        },
+        {
+          "name": "punctuation.parenthesis.end.sigil",
+          "match": "\\)"
+        },
+        {
+          "name": "punctuation.brace.begin.sigil",
+          "match": "\\{"
+        },
+        {
+          "name": "punctuation.brace.end.sigil",
+          "match": "\\}"
+        },
+        {
+          "name": "punctuation.squarebracket.begin.sigil",
+          "match": "\\["
+        },
+        {
+          "name": "punctuation.squarebracket.end.sigil",
+          "match": "\\]"
+        }
+      ]
+    },
+
+    "functions": {
+      "patterns": [
+        {
+          "name": "variable.function.sigil",
+          "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\s*(?=\\()"
+        }
+      ]
+    },
+
+    "variables": {
+      "patterns": [
+        {
+          "name": "variable.other.sigil",
+          "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
+        }
+      ]
+    }
+  }
+}

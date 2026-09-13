@@ -1,0 +1,18 @@
+use("misc/sil/array.sil");
+
+var LIMIT = 5'000'000;
+var a = new Array;
+
+var start = clock();
+
+for (var i = 0; i < LIMIT; i++) a << i;
+
+~a->map(el => el * 2);
+
+for (var i = LIMIT - 1; i >= 0; i--)
+    if (-a != (LIMIT - i - 1) * 2)
+        error("-a != (LIMIT - i - 1) * 2");
+
+if (+a != 0) error("+a != 0");
+
+print(clock() - start);

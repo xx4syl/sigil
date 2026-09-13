@@ -1,0 +1,3 @@
+[submodule "tool/pylib"]
+	path = tool/pylib
+	url = git@github.com:xx4syl/pylib.git

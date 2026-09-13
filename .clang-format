@@ -1,0 +1,48 @@
+Language: C
+
+BasedOnStyle: Google
+
+ColumnLimit: 80
+InsertNewlineAtEOF: true
+KeepEmptyLines:
+  AtStartOfFile: false
+  AtEndOfFile: false
+
+UseTab: Never
+TabWidth: 4
+IndentWidth: 4
+
+AlignEscapedNewlines: Right
+IndentPPDirectives: BeforeHash
+
+DerivePointerAlignment: false
+PointerAlignment: Right
+QualifierAlignment: Custom
+QualifierOrder: [static, inline, volatile, restrict, const, type]
+
+AllowShortIfStatementsOnASingleLine: AllIfsAndElse
+AllowShortLoopsOnASingleLine: true
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortBlocksOnASingleLine: Empty
+AllowShortFunctionsOnASingleLine: Empty
+
+BreakAfterReturnType: Automatic
+PenaltyReturnTypeOnItsOwnLine: 3567
+
+AlignAfterOpenBracket: true
+BreakAfterOpenBracketFunction: true
+BreakBeforeCloseBracketFunction: true
+AllowAllParametersOfDeclarationOnNextLine: false
+BinPackParameters: OnePerLine
+
+BreakAfterOpenBracketBracedList: true
+BreakBeforeCloseBracketBracedList: true
+
+BreakAfterOpenBracketIf: true
+BreakBeforeCloseBracketIf: true
+
+BreakAfterOpenBracketLoop: true
+BreakBeforeCloseBracketLoop: true
+
+BreakAfterOpenBracketSwitch: true
+BreakBeforeCloseBracketSwitch: true

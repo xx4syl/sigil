@@ -1,0 +1,26 @@
+print(protect(() => void()).error);
+# out: attempt to call void in func unnamed at line 1
+
+print(protect(() => (1){}).error);
+# out: attempt to use num as class in func unnamed at line 4
+
+print(protect(() => undefined).error);
+# out: undefined variable 'undefined' in func unnamed at line 7
+
+print(protect(() => undefined = void).error);
+# out: undefined variable 'undefined' in func unnamed at line 10
+
+print(protect(() => void.prop = void).error);
+# out: attempt to store to void in func unnamed at line 13
+
+print(protect(() => void.prop).error);
+# out: attempt to load from void in func unnamed at line 16
+
+print(protect(() => true // () => {}).error);
+# out: attempt to integer division bool and func in func unnamed at line 19
+
+print(protect(() => -{}).error);
+# out: attempt to negate doc in func unnamed at line 22
+
+print(protect(() => (func fail() { -void; })()).error);
+# out: attempt to negate void in func fail at line 25

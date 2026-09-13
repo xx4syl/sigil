@@ -1,0 +1,34 @@
+print((2 * (6 - (2 + 2)))); # out: 4
+
+print(2 + 3 * 4); # out: 14
+print(20 - 3 * 4); # out: 8
+
+print(2 + 6 / 3); # out: 4
+print(2 - 6 / 3); # out: 0
+
+print(2 + 6 // 3); # out: 4
+print(2 - 6 // 3); # out: 0
+
+print(3 * 2 ** 3); # out: 24
+print((3 * 2) ** 3); # out: 216
+print(3 / 2 ** 3); # out: 0.375
+print((3 / 2) ** 3); # out: 3.375
+
+print(4 ** 3 ** 2); # out: 262144
+print((4 ** 3) ** 2); # out: 4096
+
+print(2 + 6 % 3); # out: 2
+print(2 - 6 % 3); # out: 2
+
+print(false == 2 < 1); # out: true
+print(false == 1 > 2); # out: true
+
+print(false == 2 <= 1); # out: true
+print(false == 1 >= 2); # out: true
+
+print(-{ .c = 1 }.c); # out: -1
+
+print(1 - 1); # out: 0
+print(1 -1);  # out: 0
+print(1- 1);  # out: 0
+print(1-1);   # out: 0

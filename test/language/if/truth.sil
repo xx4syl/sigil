@@ -1,0 +1,9 @@
+if (void) print("bad"); else print("void"); # out: void
+if (false) print("bad"); else print("false"); # out: false
+if (0) print("bad"); else print("zero"); # out: zero
+if ("") print("bad"); else print("empty"); # out: empty
+
+if ({}) print("object"); # out: object
+if (true) print(true); # out: true
+if (1) print(1); # out: 1
+if ("string") print("string"); # out: string

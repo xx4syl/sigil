@@ -1,0 +1,1 @@
+switch (void) {} # err: switch is not supported

@@ -1,0 +1,9 @@
+var a = "a";
+var b = "b";
+a = b = "chain";
+print(a); # out: chain
+print(b); # out: chain
+
+var c = a = "var";
+print(a); # out: var
+print(c); # out: var

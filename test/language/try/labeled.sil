@@ -1,0 +1,24 @@
+label: try {
+    print("ok"); # out: ok
+} catch {
+    print("bad");
+    break label;
+    print("bad");
+}
+
+label: try {
+    print("ok"); # out: ok
+    throw "boom!";
+} catch {
+    print("ok"); # out: ok
+    break label;
+    print("bad");
+}
+
+label: try {
+    print("ok"); # out: ok
+    break label;
+    print("bad");
+} catch {
+    print("bad");
+}

@@ -1,0 +1,69 @@
+var Unit = {
+    ->__init(name, weapon = new Weapon(0)) {
+        if (typeof name != "str") error("Unit: __init: 'str' expected")
+        if not (weapon ~ Weapon) error("Unit: __init: 'Weapon' expected")
+
+        this.name = name
+        this.weapon = weapon
+        this.level = 1
+        this.damage = 10
+        this.health = 50
+        this.max_health = 50
+    },
+
+    ->attack(other) {
+        var damage = this.damage + this.weapon.damage
+        print(
+            "%(other.name)(lvl%(other.level)) takes %damage damage",
+            "(" +
+                other.health / other.max_health * 100 // 1 +
+                "%%hp -> " +
+                (other.health - damage) / other.max_health * 100 // 1 +
+                "%%hp)",
+            "from %(this.name)(lvl%(this.level))",
+        )
+        other.health -= damage
+
+        if (other.health <= 0) print("and then %(other.name) died")
+    },
+
+    ->level_up() {
+        this.level += 1
+        this.damage += 5
+        this.max_health += 20
+        this.health = this.max_health
+        return this
+    },
+}
+
+var Weapon = { ->__init(damage = 0) { this.damage = damage } }
+
+var WEAPONS = {
+    new Weapon(10),
+    new Weapon(15),
+    new Weapon(17),
+    new Weapon(20),
+}
+
+func rand_bool() { return rand() < 0.5 }
+
+var main = () => {
+    var get_weapon = () => WEAPONS[rand(WEAPONS.__len) // 1]
+
+    var unit_A2 = new Unit("A2", get_weapon())
+    for (var i = 0; i < 2; i++) unit_A2->level_up()
+
+    var unit_2B = new Unit("2B", get_weapon())->level_up()
+
+    var step = 0, coin = rand_bool() then 1 else 0
+    while (unit_2B.health > 0 and unit_A2.health > 0) {
+        if (step++ % 2 == coin) unit_A2->attack(unit_2B)
+        else unit_2B->attack(unit_A2)
+    }
+}
+
+try {
+    main()
+} catch (error) {
+    print("error: %error")
+}

@@ -1,0 +1,2 @@
+var e = enum _e {};
+_e; # err: undefined variable

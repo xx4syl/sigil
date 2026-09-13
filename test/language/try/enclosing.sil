@@ -1,0 +1,23 @@
+func ticker0(n) {
+    if (n == 0) throw "boom!";
+    ticker0(n - 1);
+}
+
+try { ticker0(0x40); } catch (error) { print(error); } # out: boom!
+
+func ticker1(n) {
+    try {
+        if (n == 0) throw "boom!";
+        ticker1(n - 1);
+    } catch (e) {
+        throw e;
+    }
+}
+
+try { ticker1(0x40); } catch (error) { print(error); } # out: boom!
+
+try {
+    try { throw "boom!"; } catch { print("inner"); } # out: inner
+} catch {
+    print("outer");
+}

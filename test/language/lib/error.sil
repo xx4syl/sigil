@@ -1,0 +1,1 @@
+error("boom!"); # err: boom! at line 1

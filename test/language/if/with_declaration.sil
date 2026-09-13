@@ -1,0 +1,6 @@
+func get() { return 3; }
+
+if (var r = get(); r % 2 == 0) print("bad"); else print(r); # out: 3
+
+if (var r = protect(() => r); r.error != void)
+    print("undefined"); # out: undefined

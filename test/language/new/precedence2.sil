@@ -1,0 +1,7 @@
+func getClass() { return { .__init() {} }; }
+
+var ins = new (getClass())();
+print(typeof ins == "doc"); # out: true
+
+ins = new (getClass());
+print(typeof ins == "doc"); # out: true

@@ -1,0 +1,15 @@
+label: if (false) {
+    print("bad");
+} else {
+    print("ok"); # out: ok
+    break label;
+    print("bad");
+}
+
+label: if (true) {
+    print("ok"); # out: ok
+    break label;
+    print("bad");
+} else {
+    print("bad");
+}

@@ -1,0 +1,5 @@
+print(sizeof({})); # out: 0
+print(sizeof({ [0] = 0 })); # out: 1
+print(sizeof("abc")); # out: 3
+print(sizeof(void)); # out: nan
+print(sizeof(0)); # out: nan

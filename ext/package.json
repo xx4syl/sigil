@@ -1,0 +1,33 @@
+{
+  "name": "sigil",
+  "displayName": "sigil",
+  "description": "language support for vscode",
+  "icon": "img/logo_red.png",
+  "publisher": "xx4syl",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "sigil",
+        "aliases": [
+          "Sigil",
+          "sigil"
+        ],
+        "extensions": [
+          ".sil"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "sigil",
+        "scopeName": "source.sigil",
+        "path": "./syntax/sil.tmLanguage.json"
+      }
+    ]
+  }
+}

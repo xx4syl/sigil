@@ -1,0 +1,3 @@
+var a = "a";
+var b = "b";
+a + b = "value"; # err: invalid left-hand side

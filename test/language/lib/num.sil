@@ -1,0 +1,8 @@
+print(num()); # out: nan
+print(num("1") == 1); # out: true
+print(num(" 1") == 1); # out: true
+print(num(" 1 ") == 1); # out: true
+print(num("a1a") == 1); # out: true
+print(num("a-1a") == -1); # out: true
+print(num("a- 1a") == 1); # out: true
+print(num("a0x1a") == 0x1a); # out: true

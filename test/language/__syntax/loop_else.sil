@@ -1,0 +1,66 @@
+# syntax!
+
+while (true) {
+    print("ok"); # out: ok
+    break;
+    print("bad");
+} else {
+    print("bad");
+}
+
+while (false) {
+    print("bad");
+} else {
+    print("ok"); # out: ok
+    break;
+    print("bad");
+}
+
+do {
+    print("ok"); # out: ok
+    break;
+    print("bad");
+} while (false) else {
+    print("bad");
+}
+
+do {
+    print("ok"); # out: ok
+} while (false) else {
+    print("ok"); # out: ok
+    break;
+    print("bad");
+}
+
+for (;true;) {
+    print("ok"); # out: ok
+    break;
+    print("bad");
+} else {
+    print("bad");
+}
+
+for (;false;) {
+    print("bad");
+} else {
+    print("ok"); # out: ok
+    break;
+    print("bad");
+}
+
+for (var i = 0; i % 2 == 0; i++) print(i);
+else if (i == 1) continue;
+# out: 0
+# out: 2
+
+if (false)
+    while (false) print("bad")
+    else print("bad")
+else
+    print("ok") # out: ok
+
+if (false) {
+    while (false) print("bad")
+} else {
+    print("ok") # out: ok
+}

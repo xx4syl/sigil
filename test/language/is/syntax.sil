@@ -1,0 +1,18 @@
+var Parent = { .__init() {} };
+var Child = (Parent){};
+var c = new Child;
+
+print(c ~ Parent); # out: true
+print(c ~ Child); # out: true
+
+print(c ~ c); # out: false
+print(c ~ {}); # out: false
+print(c ~ void); # out: false
+print(c ~ false); # out: false
+print(c ~ 0); # out: false
+print(c ~ ""); # out: false
+
+print(void ~ void); # out: false
+print(false ~ false); # out: false
+print(0 ~ 0); # out: false
+print("" ~ ""); # out: false

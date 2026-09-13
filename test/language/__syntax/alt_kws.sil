@@ -1,0 +1,21 @@
+# syntax!
+
+print(
+    false then
+        1 else
+        2
+) # out: 2
+
+print(
+    not
+        false
+) # out: true
+
+print(
+    true and
+        false
+) # out: false
+print(
+    true or
+        false
+) # out: true

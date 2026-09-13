@@ -1,0 +1,6 @@
+func vararg(a, b, ...c) { print(c.__len); }
+vararg(); # out: 0
+vararg(1); # out: 0
+vararg(1, 2); # out: 0
+vararg(1, 2, 3); # out: 1
+vararg(1, 2, 3, 4); # out: 2

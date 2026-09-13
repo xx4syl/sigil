@@ -1,0 +1,11 @@
+var fn;
+for (;;) {
+    var i = 0;
+    fn = () => i++;
+    break;
+}
+
+print(fn()); # out: 0
+print(fn()); # out: 1
+print(fn()); # out: 2
+print(fn()); # out: 3

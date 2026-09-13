@@ -1,0 +1,1 @@
+({ .__add = () => {} }) + 1; # err: attempt to add doc and num

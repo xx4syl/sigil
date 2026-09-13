@@ -1,0 +1,4 @@
+label: {
+    break label;
+    print("bad");
+}

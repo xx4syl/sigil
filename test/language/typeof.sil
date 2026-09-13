@@ -1,0 +1,9 @@
+print(typeof void); # out: void
+print(typeof false); # out: bool
+print(typeof 0); # out: num
+print(typeof ""); # out: str
+print(typeof {}); # out: doc
+print(typeof func () {}); # out: func
+print(typeof print); # out: func
+
+print(typeof typeof void); # out: str

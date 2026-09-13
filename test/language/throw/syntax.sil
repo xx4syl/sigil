@@ -1,0 +1,1 @@
+print(protect((v) => { throw v; }, 1).error); # out: 1

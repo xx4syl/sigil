@@ -1,0 +1,1 @@
+enum{e,i};while(i<=36)e+=i++;e+"eyes";

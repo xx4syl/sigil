@@ -1,0 +1,7 @@
+loop: for (;;) {
+    do {
+        break loop;
+        print("bad");
+    } while(false);
+    print("bad");
+}

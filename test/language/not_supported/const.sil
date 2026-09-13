@@ -1,0 +1,1 @@
+const final = "final"; # err: const is not supported

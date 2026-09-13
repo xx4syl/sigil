@@ -1,0 +1,1 @@
+for (elem : iter(arr)); # err: foreach loop is not supported

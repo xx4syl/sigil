@@ -1,0 +1,35 @@
+func ticker(n) {
+    try {} catch {}
+    try {} catch {}
+    try {} catch {}
+    try {} catch {}
+
+    try {
+        try {
+            try {
+                try {
+                    if (n < 0) return ticker(n - 1);
+                    throw "boom!";
+                } catch (e) {
+                    throw e;
+                }
+            } catch (e) {
+                throw e;
+            }
+        } catch(e) {
+            throw e;
+        }
+    } catch (e) {
+        throw e;
+    }
+}
+
+var start = clock();
+
+for (var i = 0; i < 10'000'000; i++) try {
+    ticker(0x400);
+} catch (e) {
+    if (e != "boom!") throw "e != \"boom!\"";
+}
+
+print(clock() - start);

@@ -1,0 +1,10 @@
+for (;;) {
+    print(1); # out: 1
+    for (;;) {
+        print(2); # out: 2
+        break;
+        print(3);
+    }
+    break;
+    print(4);
+}

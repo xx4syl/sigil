@@ -1,0 +1,2 @@
+var r = () => r();
+r(); # err: stack overflow

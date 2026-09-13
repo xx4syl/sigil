@@ -1,0 +1,15 @@
+var e = enum {
+    zero,
+    first,
+    second,
+    inc = this => this.zero++,
+    string = "string",
+    after_string,
+};
+
+print(e.zero); # out: 0
+print(e.first); # out: 1
+print(e.second); # out: 2
+print(e->inc(), e->inc(), e.zero); # out: 0 1 2
+print(e.string); # out: string
+print(e.after_string); # out: string1

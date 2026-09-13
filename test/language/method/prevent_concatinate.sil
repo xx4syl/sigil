@@ -1,0 +1,13 @@
+var String = {
+    .__init = this => {
+        this.v = "hello, ";
+    },
+
+    .__add = (this, other) => print(this.v + other),
+};
+
+var s = new String;
+print(s + "world!");
+# out: hello, world!
+# out: void
+print("world!" + s != "hello, world!"); # out: true

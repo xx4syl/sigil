@@ -1,0 +1,2 @@
+var wrld = "world";
+print("hello, %wrld!"); # out: hello, world!

@@ -1,0 +1,3 @@
+func getClass() { return { .__init = func () {} }; }
+
+var ins = new getClass()(); # err: attempt to use func as class

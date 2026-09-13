@@ -1,0 +1,5 @@
+var o = eval("({ .name = \"eval\" });");
+print(o.name); # out: eval 
+
+eval("func get() { return 1; }");
+print(typeof get == "func" && get() == 1); # out: true

@@ -1,0 +1,19 @@
+func a() { b(); }
+
+func b() {
+    (() => {
+        print(fn());
+    })();
+}
+
+var fn = trace;
+
+a();
+
+# out: func trace
+# out: func unnamed at line 5
+# out: func b at line 6
+# out: func a at line 1
+# out: func @script at line 11
+# out: func @main
+# out: 

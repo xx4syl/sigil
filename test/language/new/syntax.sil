@@ -1,0 +1,17 @@
+var Class = {
+    .__init = (this, prop) => {
+        this.class = Class;
+        this.prop = prop;
+    },
+};
+
+var sup = new Class;
+print(sup.class == Class); # out: true
+print(sup.prop == void); # out: true
+
+var ins = new sup.class;
+print(ins.class == Class); # out: true
+print(ins.class == (new sup).class); # out: true
+print(ins.class == new sup.class); # out: false
+
+print(new Class(1).prop == 1); # out: true

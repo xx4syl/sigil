@@ -1,0 +1,6 @@
+func vararg(a, b, ...c) { print(a, b, c[0], c[1]); }
+vararg(); # out: void void void void
+vararg(1); # out: 1 void void void
+vararg(1, 2); # out: 1 2 void void
+vararg(1, 2, 3); # out: 1 2 3 void
+vararg(1, 2, 3, 4); # out: 1 2 3 4

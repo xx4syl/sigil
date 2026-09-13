@@ -1,0 +1,134 @@
+# syntax!
+
+func
+main(
+    a =
+        "a"
+)
+{
+    enum
+    letters
+    {
+        a,
+        b
+    }
+
+    (
+        enum
+        letters
+        {
+            a,
+            b
+        }
+    )
+
+    (
+        func
+        local(
+        )
+        {
+        }
+    )
+
+    (
+    ) =>
+    {
+    }
+
+    a =>
+        void
+
+    if
+    (
+        false
+    )
+        return 1
+    else
+        return 2
+
+    for
+    (
+        var
+            i =
+                0
+        i <
+            10
+        i++
+    )
+    {
+        typeof
+            !
+                i
+    }
+    else
+    {
+    }
+
+    for
+    (
+        var
+            i =
+                0
+        i <
+            10 
+    )
+        i++
+    else
+        i--
+
+    do
+        i++
+    while
+    (
+        false
+    ) else
+        i--
+
+    (
+        {
+            0
+        }
+    )
+
+    (
+        {
+            ,
+        }
+    )
+
+    (
+        {
+            .a =
+                "a"
+        }
+    )
+
+    a ?
+        b :
+        c
+
+    a then
+        b else
+        c
+
+    not
+        a
+
+    a and
+        b
+    
+    a or
+        b
+
+    new
+        Class
+
+    a is
+        b
+
+    delete
+        a->
+           b(
+           ).
+           c
+}

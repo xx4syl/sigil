@@ -1,0 +1,7 @@
+func main() {
+    do {
+        () => {
+            break; # err: 'break' outside of loop
+        };
+    } while (false);
+}

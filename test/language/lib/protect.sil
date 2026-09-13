@@ -1,0 +1,4 @@
+func fn(v) { if !(v) throw "error"; return "ok"; }
+
+print(protect(fn, 1).result); # out: ok
+print(protect(fn, 0).error); # out: error

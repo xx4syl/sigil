@@ -1,0 +1,8 @@
+var a = "a";
+print(a); # out: a
+
+a = "b";
+print(a); # out: b
+
+print(a = "c"); # out: c
+print(a); # out: c
