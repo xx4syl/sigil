@@ -818,23 +818,25 @@ static enum sil_result execute(Sil *sil) {
         int argc = C & 0x7f;
 
         if (C >> 7) {
-            int offset = B + 1 + argc;
-            Value tospr = slots[offset];
+            int offset = B + argc;
+            Value tospr = slots[offset + 1];
             if (!ISDOC(tospr)) {
                 Value t = sil__typeof(sil, tospr);
                 sil__pushtmp(sil, t);
                 UNWINDFMTLN("attempt to spread @", t);
             }
             sil__pushtmp(sil, tospr);
-            for (int i = 0;; i++, argc++) {
-                if ((i & (SPRSTEP - 1)) == 1) {
-                    ensurearray(sil, slots + offset + i + SPRSTEP - 1);
-                    UPDCTX();
-                }
-                Value v = sil__docload(ASDOC(tospr), NUM(i));
-                if (ISVOID(v)) break;
-                slots[offset + i] = v;
+            Doc *spr = ASDOC(tospr);
+            Value lenval = sil__docload(spr, GCO(STRLIT("__len")));
+            double lendouble = sil__tonum(sil, lenval);
+            int count = sil__dtoi(isinf(lendouble) ? 0 : lendouble);
+            if (count > 1) {
+                ensurearray(sil, slots + offset + count);
+                UPDCTX();
             }
+            for (int i = 0; i < count; i++)
+                slots[offset + i + 1] = sil__docload(spr, NUM(i));
+            argc += count;
             sil__clrtmp(sil);
         }
 
@@ -1041,11 +1043,7 @@ bool sil_as_bool(Sil *sil, int slot) {
 }
 
 int sil_as_int(Sil *sil, int slot) {
-    double num = ASNUM(lds(sil, slot));
-    if (!isfinite(num)) return isnan(num) ? 0 : num < 0 ? INT_MIN : INT_MAX;
-    if (num > INT_MAX) return INT_MAX;
-    if (num < INT_MIN) return INT_MIN;
-    return (int)num;
+    return sil__dtoi(ASNUM(lds(sil, slot)));
 }
 
 double sil_as_double(Sil *sil, int slot) {

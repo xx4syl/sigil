@@ -1,6 +1,23 @@
 func vararg(a, b, c, d) { print(a, b, c, d); }
+
 vararg(); # out: void void void void
 vararg(1); # out: 1 void void void
+vararg(1, {,}...); # out: 1 void void void
 vararg(1, {2}...); # out: 1 2 void void
 vararg(1, {2, 3}...); # out: 1 2 3 void
 vararg(1, {2, 3, 4}...); # out: 1 2 3 4
+
+vararg(1, {[0] = 2, [1] = 3, [2] = 4}...); # out: 1 void void void
+vararg(1, {.__len = 3}...); # out: 1 void void void
+vararg(1, {[0] = 2, [1] = 3, [2] = 4, .__len = 3}...); # out: 1 2 3 4
+vararg(1, {[0] = 2, [1] = 3, [2] = 4, .__len = 2}...); # out: 1 2 3 void
+vararg(1, {[0] = 2, [1] = 3, [2] = 4, .__len = 2.5}...); # out: 1 2 3 void
+
+vararg(1, {[0] = 2, [1] = 3, [2] = 4, .__len = "3"}...);
+# out: 1 2 3 4
+vararg(1, {[0] = 2, [1] = 3, [2] = 4, .__len = nan}...);
+# out: 1 void void void
+vararg(1, {[0] = 2, [1] = 3, [2] = 4, .__len = inf}...);
+# out: 1 void void void
+vararg(1, {[0] = 2, [1] = 3, [2] = 4, .__len = -inf}...);
+# out: 1 void void void

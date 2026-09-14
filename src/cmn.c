@@ -1,6 +1,7 @@
 #include "cmn.h"
 
 #include <locale.h>
+#include <math.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -130,4 +131,11 @@ double sil__atofl(Sil *sil, const char *chars, int len) {
     double num = atof(buf);
     FREE(buf, bufsize);
     return num;
+}
+
+int sil__dtoi(double d) {
+    if (!isfinite(d)) return isnan(d) ? 0 : d < 0 ? INT_MIN : INT_MAX;
+    return d > (double)INT_MAX   ? INT_MAX
+           : d < (double)INT_MIN ? INT_MIN
+                                 : (int)d;
 }

@@ -99,5 +99,6 @@ bool sil__isalpha(char c);
 bool sil__isdigit(char c);
 int sil__readnum(const char *src, int *skip);
 double sil__atofl(Sil *sil, const char *chars, int len);
+int sil__dtoi(double d);
 
 #endif  // sil_cmn_h
