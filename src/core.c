@@ -12,7 +12,6 @@
 #define INITARRAY 0x100
 #define INITTRIGGER 0x10000
 #define TRIGGERFACTOR 3.14
-#define SPRSTEP 0x10
 
 struct sil_handle {
     Value v;
@@ -207,8 +206,7 @@ static Nonlocal *opennl(Sil *sil, Value *local) {
 static void closenls(Sil *sil, int count) {
     for (int i = 0; i < count; i++) {
         Nonlocal *nl = sil->opennls;
-        nl->closed = *nl->value;
-        nl->value = &nl->closed;
+        sil__closenonlocal(nl);
         sil->opennls = nl->next;
     }
 }
@@ -440,7 +438,7 @@ static void initklasses(Sil *sil) {
     do {                                                                       \
         k = GCO(STRLIT(#name));                                                \
         sil__pushtmp(sil, k);                                                  \
-        v = GCO(sil__newcfunc(sil, klass##name, #name));                       \
+        v = GCO(sil__newcfunc(sil, klass##name, #name, 0));                    \
         sil__pushtmp(sil, v);                                                  \
         sil__docstore(sil, sil->klss.klass, k, v);                             \
         sil__clrtmp(sil);                                                      \
@@ -1119,7 +1117,30 @@ void sil_strl(Sil *sil, const char *chars, int len, int slot) {
 }
 
 void sil_func(Sil *sil, SilFunc v, const char *name, int slot) {
-    sts(sil, slot, GCO(sil__newcfunc(sil, v, name)));
+    sts(sil, slot, GCO(sil__newcfunc(sil, v, name, 0)));
+}
+
+void sil_closure(Sil *sil, SilFunc v, const char *name, int nlc, int slot) {
+    Func *func = sil__newcfunc(sil, v, name, nlc);
+    sil__pushtmp(sil, GCO(func));
+
+    for (int i = 0; i < nlc; i++) {
+        Nonlocal *nl = sil__newnonlocal(sil, sil->frame->slots + slot + i);
+        sil__closenonlocal(nl);
+        func->nls[func->nlc++] = nl;
+    }
+
+    sts(sil, slot, GCO(func));
+
+    sil__clrtmp(sil);
+}
+
+void sil_get_nonlocal(Sil *sil, int index, int slot) {
+    sts(sil, slot, *sil->frame->fn->nls[index]->value);
+}
+
+void sil_set_nonlocal(Sil *sil, int index, int slot) {
+    *sil->frame->fn->nls[index]->value = lds(sil, slot);
 }
 
 void sil_define(Sil *sil, const char *name, int slot) {

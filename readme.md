@@ -9,7 +9,7 @@ use("misc/sil/array.sil")
 
 var Writer = {
     .__init(this, ...init) {
-        this.data = (Array){,}
+        this.data = new Array
         this.data->add(init...)
     },
 

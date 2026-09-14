@@ -1,0 +1,11 @@
+var c = counter();
+print(c()); # out: 0
+print(c()); # out: 1
+print(c()); # out: 2
+print(c()); # out: 3
+
+c = counter();
+print(c()); # out: 0
+print(c()); # out: 1
+print(c()); # out: 2
+print(c()); # out: 3

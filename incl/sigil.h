@@ -69,6 +69,10 @@ void sil_str(Sil *sil, const char *v, int slot);
 void sil_strl(Sil *sil, const char *v, int len, int slot);
 void sil_func(Sil *sil, SilFunc v, const char *name, int slot);
 
+void sil_closure(Sil *sil, SilFunc v, const char *name, int nlc, int slot);
+void sil_get_nonlocal(Sil *sil, int index, int slot);
+void sil_set_nonlocal(Sil *sil, int index, int slot);
+
 void sil_define(Sil *sil, const char *name, int slot);
 bool sil_variable(Sil *sil, const char *name, int dst);
 void sil_copy(Sil *sil, int dst, int slot);

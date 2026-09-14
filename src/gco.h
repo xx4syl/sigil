@@ -127,7 +127,7 @@ Str *sil__newstrl(Sil *sil, const char *chars, int len);
 Str *sil__strconcat(Sil *sil, Str *a, Str *b);
 
 Func *sil__newnativefunc(Sil *sil, Def *def);
-Func *sil__newcfunc(Sil *sil, SilFunc cfn, const char *name);
+Func *sil__newcfunc(Sil *sil, SilFunc cfn, const char *name, int nlc);
 
 Doc *sil__newdoc(Sil *sil, Doc *klass);
 void sil__docstore(Sil *sil, Doc *doc, Value k, Value v);
@@ -141,6 +141,7 @@ int sil__defaddnli(Sil *sil, Def *def, bool local, int index);
 int sil__defaddctch(Sil *sil, Def *def, int bgn, int end, int rcvr, int slot);
 
 Nonlocal *sil__newnonlocal(Sil *sil, Value *v);
+void sil__closenonlocal(Nonlocal* nl);
 
 void sil__disasmdef(Sil *sil, Def *def);
 void sil__logcode(Sil *sil, Def *def, int i);

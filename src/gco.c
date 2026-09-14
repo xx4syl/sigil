@@ -174,10 +174,10 @@ Func *sil__newnativefunc(Sil *sil, Def *def) {
     return f;
 }
 
-Func *sil__newcfunc(Sil *sil, SilFunc cfn, const char *name) {
+Func *sil__newcfunc(Sil *sil, SilFunc cfn, const char *name, int nlc) {
     char *dupname = name != NULL ? sil__strdupl(sil, name, strlen(name)) : NULL;
 
-    const size_t size = FLEXSIZE(Func, Nonlocal *, 0);
+    const size_t size = FLEXSIZE(Func, Nonlocal *, nlc);
     Func *f = sil__newgco(sil, size, GCO_FUNC);
 
     f->type = FUNC_C;
@@ -282,6 +282,11 @@ static void marknonlocal(Gco *o) {
 static void freenonlocal(Sil *sil, Gco *o) {
     Nonlocal *nl = (Nonlocal *)o;
     FREE(nl, sizeof(Nonlocal));
+}
+
+void sil__closenonlocal(Nonlocal *nl) {
+    nl->closed = *nl->value;
+    nl->value = &nl->closed;
 }
 
 void sil__logcode(Sil *sil, Def *d, int i) {

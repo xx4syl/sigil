@@ -68,3 +68,14 @@ def runner(
         return inner
 
     return deco
+
+
+def duk(script: str, timeout: int | None = None):
+    result = subprocess.run(
+        ["duk", script],
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        timeout=timeout,
+    )
+    return result.stdout, result.stderr

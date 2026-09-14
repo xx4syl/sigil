@@ -382,6 +382,22 @@ static enum sil_result silfnExecute(Sil *sil) {
     return SIL_OK;
 }
 
+static enum sil_result silfn_Counter(Sil *sil) {
+    sil_use_slots(sil, 2);
+    sil_get_nonlocal(sil, 0, 0);
+    double inc = sil_as_double(sil, 0) + 1;
+    sil_num(sil, inc, 1);
+    sil_set_nonlocal(sil, 0, 1);
+    return sil_return(sil, 0);
+}
+
+static enum sil_result silfnCounter(Sil *sil) {
+    sil_use_slots(sil, 1);
+    sil_num(sil, 0, 0);
+    sil_closure(sil, silfn_Counter, "_counter", 1, 0);
+    return sil_return(sil, 0);
+}
+
 static void loadLib(void) {
     sil_use_slots(sil, 1);
 
@@ -438,6 +454,9 @@ static void loadLib(void) {
 
     sil_func(sil, silfnExecute, "execute", 0);
     sil_define(sil, "execute", 0);
+
+    sil_func(sil, silfnCounter, "counter", 0);
+    sil_define(sil, "counter", 0);
 
     sil_num(sil, NAN, 0);
     sil_define(sil, "nan", 0);
