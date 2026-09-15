@@ -15,7 +15,6 @@ EXTS = {"sil"}
 OPTIMIZATION = 2
 SWITCHED_GOTO = True
 NANBOXING = True
-DUK = False
 
 
 @runner(
@@ -49,17 +48,21 @@ def main(run: RunFunc):
             file.write(result)
             file.flush()
 
-            if DUK:
+            if len(sys.argv) > 1:
                 parts = [*script.with_suffix(".js").parts]
                 parts[-2] = "es5"
                 script = Path(*parts)
 
-                out, err = duk(str(script), None)
-                if err:
-                    print(f"duk: error at {script}: {trim(err, 32)}")
-                else:
-                    file.write(f"\nduk:\n{out}")
-                    file.flush()
+                def exe_by(name: str):
+                    out, err = do(name, str(script), None)
+                    if err:
+                        print(f"{name}: error at {script}: {trim(err, 32)}")
+                    else:
+                        file.write(f"\n{name}:\n{out}")
+                        file.flush()
+
+                for executor in sys.argv[1:]:
+                    exe_by(executor)
 
             print("\b\b\bdone!")
 
@@ -67,7 +70,4 @@ def main(run: RunFunc):
 
 
 if __name__ == "__main__":
-    if "duk" in sys.argv:
-        DUK = True
-
     main()

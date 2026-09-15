@@ -18,13 +18,13 @@ enum event_type {
 };
 
 var Event = {
-    ->__init(type = event_type.other) {
+    ->__init(type : event_type.other) {
         this.type = type;
     },
 };
 
 var Message = (Event){
-    ->__init(text = "") {
+    ->__init(text : "") {
         Event.__init(this, event_type.new_message);
         this.text = text;
     },

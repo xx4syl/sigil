@@ -398,6 +398,44 @@ static enum sil_result silfnCounter(Sil *sil) {
     return sil_return(sil, 0);
 }
 
+static enum sil_result silfn_Iter(Sil *sil) {
+    sil_use_slots(sil, 4);
+
+    sil_get_nonlocal(sil, 0, 0);
+    sil_get_nonlocal(sil, 1, 1);
+
+    sil_doc(sil, 2);
+
+    int iter = sil_as_int(sil, 1);
+    if (sil_next_pair(sil, &iter, 0, 1, 0)) {
+        sil_str(sil, "key", 3);
+        sil_doc_store(sil, 2, 3, 0);
+
+        sil_str(sil, "value", 3);
+        sil_doc_store(sil, 2, 3, 1);
+    } else {
+        sil_void(sil, 2);
+    }
+
+    sil_num(sil, iter, 0);
+    sil_set_nonlocal(sil, 1, 0);
+
+    return sil_return(sil, 2);
+}
+
+static enum sil_result silfnIter(Sil *sil) {
+    if (sil_slots(sil) < 1 || sil_type(sil, 0) != SIL_DOC) {
+        sil_use_slots(sil, 1);
+        sil_str(sil, "'doc' expected", 0);
+        return sil_throw(sil, 0);
+    }
+
+    sil_use_slots(sil, 2);
+    sil_num(sil, 0, 1);
+    sil_closure(sil, silfn_Iter, "_iter", 2, 0);
+    return sil_return(sil, 0);
+}
+
 static void loadLib(void) {
     sil_use_slots(sil, 1);
 
@@ -457,6 +495,9 @@ static void loadLib(void) {
 
     sil_func(sil, silfnCounter, "counter", 0);
     sil_define(sil, "counter", 0);
+
+    sil_func(sil, silfnIter, "iter", 0);
+    sil_define(sil, "iter", 0);
 
     sil_num(sil, NAN, 0);
     sil_define(sil, "nan", 0);

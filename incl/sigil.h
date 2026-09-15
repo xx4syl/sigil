@@ -90,4 +90,6 @@ SilHandle *sil_new_handle(Sil *sil, int slot);
 void sil_free_handle(Sil *sil, SilHandle *hndl);
 void sil_handle(Sil *sil, SilHandle *hndl, int slot);
 
+bool sil_next_pair(Sil *sil, int *iter, int kslot, int vslot, int slot);
+
 #endif  // sigil_h

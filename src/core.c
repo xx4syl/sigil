@@ -1205,3 +1205,14 @@ SilHandle *sil_new_handle(Sil *sil, int slot) {
 void sil_free_handle(Sil *sil, SilHandle *hndl) {
     freehandle(sil, hndl);
 }
+
+bool sil_next_pair(Sil *sil, int *iter, int kslot, int vslot, int slot) {
+    Doc *doc = ASDOC(lds(sil, slot));
+    Value k, v;
+    if (sil__mapnext(&doc->map, iter, &k, &v)) {
+        if (kslot >= 0) sts(sil, kslot, k);
+        if (vslot >= 0) sts(sil, vslot, v);
+        return true;
+    }
+    return false;
+}

@@ -1723,7 +1723,13 @@ static void paramlist(Compiler *c) {
         Lx name = expectword(PARSER);
         singleparam(c, &name);
 
-        if (stepif(PARSER, LX_EQUALS)) {
+        if (
+            stepif(PARSER, LX_COLON)
+#ifdef ALTKEYWORDS
+            || stepif(PARSER, LX_ELSE)
+#endif
+        ) {
+            ignoreline(PARSER);
             defaults[defaultc].name = name;
             defaults[defaultc].state = *PARSER;
             defaultc++;

@@ -1,5 +1,5 @@
 var Array = {
-    ->__init(length = 0, fill) {
+    ->__init(length : 0, fill) {
         this.__len = length;
         if (fill != void) {
             for (var i = 0; i < length; i++) {

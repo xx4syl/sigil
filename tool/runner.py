@@ -70,9 +70,9 @@ def runner(
     return deco
 
 
-def duk(script: str, timeout: int | None = None):
+def do(name: str, script: str, timeout: int | None = None):
     result = subprocess.run(
-        ["duk", script],
+        [name, script],
         capture_output=True,
         text=True,
         encoding="utf-8",

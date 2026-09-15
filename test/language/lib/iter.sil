@@ -1,0 +1,26 @@
+var doc = {1, 2, 3, .name = "sigil"};
+
+var next = iter(doc);
+
+var result = {};
+
+for (var i = next(); i != void; i = next()) result[i.key] = i.value;
+
+print(result[0] == doc[0]); # out: true
+print(result[1] == doc[1]); # out: true
+print(result[2] == doc[2]); # out: true
+print(result.name == doc.name); # out: true
+
+print(result.__len == 3); # out: true
+
+try {
+    iter(1);
+} catch (e) {
+    print(e); # out: 'doc' expected
+}
+
+try {
+    iter();
+} catch (e) {
+    print(e); # out: 'doc' expected
+}

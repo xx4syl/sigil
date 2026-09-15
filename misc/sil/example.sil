@@ -1,5 +1,5 @@
 var Unit = {
-    ->__init(name, weapon = new Weapon(0)) {
+    ->__init(name, weapon else new Weapon(0)) {
         if (typeof name != "str") error("Unit: __init: 'str' expected")
         if not (weapon ~ Weapon) error("Unit: __init: 'Weapon' expected")
 
@@ -36,7 +36,7 @@ var Unit = {
     },
 }
 
-var Weapon = { ->__init(damage = 0) { this.damage = damage } }
+var Weapon = { ->__init(damage else 0) { this.damage = damage } }
 
 var WEAPONS = {
     new Weapon(10),

@@ -19,3 +19,10 @@ print(
     true or
         false
 ) # out: true
+
+func param(
+    a else
+        1
+) { print(a) }
+param(0) # out: 0
+param() # out: 1

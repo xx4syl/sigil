@@ -1,6 +1,6 @@
 var c = 0;
 func get() { return c++; }
-func fn(a,b=a,c,d=get(),e=c!=void?c++:-1) { print(a,b,c,d,e); }
+func fn(a,b:a,c,d:get(),e:c!=void?c++:-1) { print(a,b,c,d,e); }
 
 fn(1, 2, 3, 4, 5); # out: 1 2 3 4 5
 fn(1); # out: 1 1 void 0 -1
